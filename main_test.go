@@ -23,40 +23,40 @@ var jsonData = []map[string]string{
 
 func TestIsCsv(t *testing.T){
 	resp, _ := http.Get("http://www.galdino.net.br/nuveotest.csv")
-  defer resp.Body.Close()
-  expected := true
-  actual := strings.Contains(resp.Header.Get("Content-Type"), "text/csv")
-  if actual != expected {
-    t.Error("TestIsCsv failed")
-  }
+	defer resp.Body.Close()
+	expected := true
+	actual := strings.Contains(resp.Header.Get("Content-Type"), "text/csv")
+	if actual != expected {
+		t.Error("TestIsCsv failed")
+	}
 }
 
 func TestIsJson(t *testing.T){
 	resp, _ := http.Get("http://www.galdino.net.br/nuveotest.php")
-  defer resp.Body.Close()
-  expected := true
-  actual := strings.Contains(resp.Header.Get("Content-Type"), "application/json")
-  if actual != expected {
-    t.Error("TestIsJson failed")
-  }
+	defer resp.Body.Close()
+	expected := true
+	actual := strings.Contains(resp.Header.Get("Content-Type"), "application/json")
+	if actual != expected {
+		t.Error("TestIsJson failed")
+	}
 }
 
 func TestContentTypeNotSupported(t *testing.T){
 	resp, _ := http.Get("http://www.galdino.net.br/wagner/index.html")
-  defer resp.Body.Close()
-  expected := true
-  actual := (!strings.Contains(resp.Header.Get("Content-Type"), "application/json") && !strings.Contains(resp.Header.Get("Content-Type"), "text/csv"))
-  if actual != expected {
-    t.Error("TestContentTypeNotSupported failed")
-  }
+	defer resp.Body.Close()
+	expected := true
+	actual := (!strings.Contains(resp.Header.Get("Content-Type"), "application/json") && !strings.Contains(resp.Header.Get("Content-Type"), "text/csv"))
+	if actual != expected {
+		t.Error("TestContentTypeNotSupported failed")
+	}
 }
 
 func TestGetBaseMap(t *testing.T){
-  expected := true
-  actual := checkBaseMap()
-  if actual != expected {
-    t.Error("TestGetBaseMap failed")
-  }
+	expected := true
+	actual := checkBaseMap()
+	if actual != expected {
+		t.Error("TestGetBaseMap failed")
+	}
 }
 
 func checkBaseMap() bool {
@@ -66,28 +66,28 @@ func checkBaseMap() bool {
 	}
 	for k, _ := range basemap {
 		if _, ok := m[k]; !ok {
-	    return false
-	  } else if basemap[k] != m[k] {
-	  	return false
-	  }
+			return false
+		} else if basemap[k] != m[k] {
+			return false
+		}
 	}
-  return true
+	return true
 }
 
 func TestGetCsvData(t *testing.T){
 	var data outputdata
 	var err error
 	resp, _ := http.Get("http://www.galdino.net.br/nuveotest.csv")
-  defer resp.Body.Close()
-  err = getCsvData(resp, &data)
-  if err != nil {
-    fmt.Println("Erro ao processar CSV:", err)
-  }
-  expected := true
-  actual := checkCsvData(data)
-  if actual != expected {
-    t.Error("TestGetCsvData failed")
-  }
+	defer resp.Body.Close()
+	err = getCsvData(resp, &data)
+	if err != nil {
+		fmt.Println("Erro ao processar CSV:", err)
+	}
+	expected := true
+	actual := checkCsvData(data)
+	if actual != expected {
+		t.Error("TestGetCsvData failed")
+	}
 }
 
 func checkCsvData(data outputdata) bool {
@@ -102,12 +102,12 @@ func checkCsvData(data outputdata) bool {
 		}
 		for k, _ := range csvMap {
 			if _, ok := retMap[k]; !ok {
-		    return false
-		  } else if csvMap[k] != retMap[k] {
-		  	return false
-		  }
+				return false
+			} else if csvMap[k] != retMap[k] {
+				return false
+			}
 		}
-  }
+	}
 	return true
 }
 
@@ -115,17 +115,17 @@ func TestGetJsonData(t *testing.T){
 	var data outputdata
 	var err error
 	resp, _ := http.Get("http://www.galdino.net.br/nuveotest.php")
-  defer resp.Body.Close()
-  err = getJsonData(resp, &data)
-  if err != nil {
-    fmt.Println("Erro ao processar JSON:", err)
-  }
-  putMandatoryData(&data)
-  expected := true
-  actual := checkJsonData(data)
-  if actual != expected {
-    t.Error("TestGetJsonData failed")
-  }
+	defer resp.Body.Close()
+	err = getJsonData(resp, &data)
+	if err != nil {
+		fmt.Println("Erro ao processar JSON:", err)
+	}
+	putMandatoryData(&data)
+	expected := true
+	actual := checkJsonData(data)
+	if actual != expected {
+		t.Error("TestGetJsonData failed")
+	}
 }
 
 func checkJsonData(data outputdata) bool {
@@ -140,11 +140,11 @@ func checkJsonData(data outputdata) bool {
 		}
 		for k, _ := range jsonMap {
 			if _, ok := retMap[k]; !ok {
-		    return false
-		  } else if jsonMap[k] != retMap[k] {
-		  	return false
-		  }
+				return false
+			} else if jsonMap[k] != retMap[k] {
+				return false
+			}
 		}
-  }
+	}
 	return true
 }
