@@ -1,5 +1,4 @@
-# nuveotest
-Teste de avaliação para recrutamento da Nuveo:
+# Teste de avaliação para recrutamento da Nuveo:
 
 1. Escrever uma função onde recebe uma URL (endereço HTTP) que seja um JSON ou CSV (precisa processar os dois tipos).
 
