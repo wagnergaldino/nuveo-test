@@ -9,4 +9,4 @@
 -idade
 -OUTROS (dinamicamente precisa armazena outros campos que chegar)
 
-3. Escrever teste com todas as possibilidade, ou seja, cobertura de 100%
+3. Escrever teste com todas as possibilidade, ou seja, cobertura de 100%.
